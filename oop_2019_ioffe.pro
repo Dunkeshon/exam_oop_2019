@@ -19,13 +19,11 @@ SOURCES += \
     error.cpp \
     main.cpp \
     mainwindow.cpp \
-    program.cpp \
     user.cpp
 
 HEADERS += \
     error.h \
     mainwindow.h \
-    program.h \
     user.h
 
 FORMS += \

@@ -3,9 +3,11 @@
 
 #include <string>
 #include <vector>
-#include "program.h"
 #include <random>
 
+using std::vector;
+using std::string;
+using std::pair;
 /*
  * class to display an error that can appear during the program
  * _average_fixing_time - Average time to fix errors ; creates in constructor
@@ -16,7 +18,7 @@ class error
 {
 private:
     int _average_fixing_time;
-    std::string _error_type;
+    string _error_name;
     int generate_average_fixing_time();
     /*
      * return appearence_chance
@@ -33,9 +35,25 @@ private:
 
 
 public:
-    std::string error_type();
-    std::vector<std::pair<std::string,int>> list_of_programs_and_chance_of_appearance_in_them;
-    int average_fixing_time();
-    error(std::string error_type,std::vector<std::string> available_programs);
+
+    vector<pair<string,int>> list_of_programs_and_chance_of_appearance_in_them;
+
+    string error_name() const;
+
+    int average_fixing_time() const;
+
+    /*
+     * constructor,
+     * _average_fixing_time - Average time to fix errors ; creates in constructor
+     * error_type - Receiving by a param of a constructor
+     * possibility of appearence an error
+     */
+    error(string error_name,vector<string> available_programs);
+    // КОНСТРУКТОР КОПИРОВАНИЯ
+
+    /*
+     * now it's not needed, maybe i'll get rid of it latter
+     */
+    error operator =(error other);
 };
 #endif // ERROR_H
