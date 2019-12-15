@@ -331,3 +331,17 @@ user MainWindow::_search_user_by_name(std::string name)
     }
         return current_user;
 }
+/*
+ * каждый работник должен выбрать програму (если он не занят)
+ *
+ */
+void MainWindow::on_start_demonstration_clicked()
+{
+    while(_hours_of_work!=0){
+        for(const auto &i:users){
+            if(i.)
+        }
+
+        _hours_of_work--;
+    }
+}

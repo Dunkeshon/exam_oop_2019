@@ -26,6 +26,16 @@ void user::set_program_and_average_time(std::vector<string> available_programs)
     }
 }
 
+bool user::occupied()
+{
+    return _occupied;
+}
+
+void user::Set_occupied(bool occupied)
+{
+    _occupied = occupied;
+}
+
 int user::necessary_work_time()
 {
     return _necessary_work_time;
@@ -34,6 +44,11 @@ int user::necessary_work_time()
 void user::Set_necessary_work_time(int time)
 {
     _necessary_work_time = time;
+}
+
+void user::Set_time_of_fix(int time_of_fix)
+{
+    story.back()._time_of_fix = time_of_fix;
 }
 
 std::string user::name() const
@@ -45,6 +60,7 @@ user::user(std::vector<string> available_programs, string user_name)
 {
    set_program_and_average_time(available_programs);
    _name = user_name;
+   _occupied = false;
 }
 
 user::user()
@@ -57,12 +73,14 @@ user::user(const user &obj)
     _name = obj._name;
     _type = obj._type;
     story =  obj.story;
+    _occupied = obj._occupied;
+    _necessary_work_time= obj._necessary_work_time;
     program_and_average_time = obj.program_and_average_time;
+
 }
 
-user::debugStory::debugStory(string bug,int time_of_appearence,int time_of_fix)
+user::debugStory::debugStory(string bug,int time_of_appearence)
 {
     _bug=bug;
     _time_of_appearence=time_of_appearence;
-    _time_of_fix=time_of_fix;
 }

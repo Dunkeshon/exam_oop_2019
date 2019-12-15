@@ -14,6 +14,7 @@ using std::pair;
 class user
 {
 private:
+     bool _occupied;
      int _necessary_work_time; // necessary_work_time_with_current_program
      type_of_user _type;
      string _name;
@@ -21,7 +22,7 @@ private:
         string _bug;
         int _time_of_appearence;
         int _time_of_fix;
-        debugStory(string bug,int time_of_appearence,int time_of_fix);// need to pass error.type
+        debugStory(string bug,int time_of_appearence);// need to pass error.type
      };
      void generate_type_of_user();
      /*
@@ -29,8 +30,11 @@ private:
       */
      void set_program_and_average_time(std::vector<string> available_programs);
 public:
+     bool occupied();
+     void Set_occupied(bool occupied);
      int necessary_work_time();
      void Set_necessary_work_time(int time);
+     void Set_time_of_fix(int time_of_fix);
     vector<pair<string,int>> program_and_average_time; // program- program that user uses
                                                         //int - average time of usage of this program
     vector <debugStory> story;
