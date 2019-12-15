@@ -108,31 +108,6 @@ void MainWindow::_generate_programs()
     }
 }
 
-
-void MainWindow::on_pushButton_clicked()
-{
-    qDebug()<<_number_of_users;
-    qDebug()<<_number_of_programs;
-    qDebug()<<_number_of_errors;
-    qDebug()<<_hours_of_work;
-
-    qDebug()<<"USERS";
-    for(const auto &i:users){
-        qDebug()<<QString::fromStdString(i.name());
-    }
-    qDebug()<<"";
-    qDebug()<<"ERRORS";
-    for(const auto &i:errors){
-        qDebug()<<QString::fromStdString(i.error_name());
-    }
-    qDebug()<<"";
-    qDebug()<<"Programs";
-    for(const auto &i:programs){
-        qDebug()<<QString::fromStdString(i);
-    }
-    problem_report();
-}
-
 void MainWindow::problem_report()
 {
     QFont newFont("Courier", 24, QFont::Bold, false);
@@ -261,8 +236,15 @@ void MainWindow::on_Show_details_button_clicked()
 
         // outputing story of error
         for(const auto &i:current_user.story){
+            if (i._time_of_fix==0){
              list->addItem(QString::fromStdString(i._bug + " " + "Spotted: " + std::to_string(i._time_of_appearence)+"th hour of work"
-                                                  + " " +"Fixed: " +std::to_string(i._time_of_fix)+ "th hour of work"));
+                                                  + " Not fixed"));
+            }
+            else{
+                list->addItem(QString::fromStdString(i._bug + " " + "Spotted: " + std::to_string(i._time_of_appearence)+"th hour of work"
+                                                     + " " +"Fixed: " +std::to_string(i._time_of_fix)+ "th hour of work"));
+
+            }
         }
 
         QPushButton *OKButton2 = new QPushButton(details_option_window);
@@ -363,10 +345,17 @@ void MainWindow::on_start_demonstration_clicked()
                 }
             }
         }
-
         time_counter++;
     }
     for(const auto&i:users){
+        time_spend_on_fixing=0;
         ui->listWidget->addItem(QString::fromStdString(i.name()));
+        for(const auto &j:i.story){
+            problems_appeared.push_back(j._bug);
+            if(j._time_of_fix!=0){
+                time_spend_on_fixing+=(j._time_of_fix-j._time_of_appearence);
+            }
+        }
     }
+    problem_report();
 }

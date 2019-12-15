@@ -40,7 +40,6 @@ signals:
 
 private slots:
 
-    void on_pushButton_clicked();
 
     void on_setup_data_clicked();
 

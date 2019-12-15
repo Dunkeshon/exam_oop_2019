@@ -182,4 +182,5 @@ user::debugStory::debugStory(string bug,int time_of_appearence)
 {
     _bug=bug;
     _time_of_appearence=time_of_appearence;
+    _time_of_fix = 0;
 }
