@@ -10,7 +10,7 @@ using std::pair;
 // will be used during the work with program
  enum type_of_user {_fixed,// fixed probability of appearence of errors
                     _was_before_depend, // was before in story -> probability -= 2
-                    _time_of_usage_depend}; //each 5 hours (ALL USAGE ) probability --
+                    _time_of_usage_depend}; //each 10-20 hours (ALL USAGE ) probability --
 class user
 {
 private:

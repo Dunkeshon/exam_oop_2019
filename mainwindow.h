@@ -30,6 +30,9 @@ public:
     void Set_number_of_errors(int number);
     void Set_number_of_programs(int number);
     void Set_hours_of_work(int number);
+
+    int hours_of_work();
+
     void generate_data();
     ~MainWindow();
 
@@ -37,6 +40,8 @@ private slots:
     void on_pushButton_clicked();
 
 private:
+
+    void problem_report();
     void _enter_amount_of_elements();
     /*
      * amount of elements in vector (from user's input)
@@ -54,5 +59,8 @@ private:
     void _generate_programs();
     Ui::MainWindow *ui;
 
+
+    vector<string> problems_appeared;
+    int time_spend_on_fixing;
 };
 #endif // MAINWINDOW_H
