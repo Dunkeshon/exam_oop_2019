@@ -51,6 +51,8 @@ void input_data::on_confirm_button_clicked()
             temp->Set_number_of_errors(error);
             temp->Set_hours_of_work(time);
             temp->centralWidget()->setEnabled(true);
+
+            temp->generate_data();
             hide();
         }
     }

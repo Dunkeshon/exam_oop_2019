@@ -42,6 +42,13 @@ error::error(string error_type,vector<string> available_programs )
     match_pairs(available_programs);
 }
 
+error::error(const error &obj)
+{
+    _average_fixing_time = obj._average_fixing_time;
+    _error_name = obj._error_name;
+    list_of_programs_and_chance_of_appearance_in_them = obj.list_of_programs_and_chance_of_appearance_in_them;
+}
+
 error error::operator =(error other)
 {
     _average_fixing_time = other._average_fixing_time;

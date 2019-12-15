@@ -50,6 +50,7 @@ public:
      */
     error(string error_name,vector<string> available_programs);
     // КОНСТРУКТОР КОПИРОВАНИЯ
+    error(const error &obj);
 
     /*
      * now it's not needed, maybe i'll get rid of it latter

@@ -30,6 +30,7 @@ public:
     void Set_number_of_errors(int number);
     void Set_number_of_programs(int number);
     void Set_hours_of_work(int number);
+    void generate_data();
     ~MainWindow();
 
 private slots:
