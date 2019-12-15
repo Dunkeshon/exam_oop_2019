@@ -337,11 +337,33 @@ user MainWindow::_search_user_by_name(std::string name)
  */
 void MainWindow::on_start_demonstration_clicked()
 {
-    while(_hours_of_work!=0){
-        for(const auto &i:users){
-            if(i.)
+    int time_counter=0;
+    while(time_counter!=_hours_of_work){
+        //each worker
+        for(auto &i:users){
+            // if he is not occupied
+            if(!i.occupied()){
+                // pick program
+                  i.Set_occupied(true); // set occupied
+                  i.pick_up_random_program(); // random program
+                  i.create_time_of_usage();//generate time of usage
+                  i.working_on_program(errors,time_counter); //start working with program
+            }
+            else { // if occupied check if he need to fix a bug
+                if(i.bug_spotted){
+                    i.current_bug_working_time_left--;
+                    if(i.current_bug_working_time_left==0){ // if end up with a bug complete story about it
+                        i.Set_time_of_fix(time_counter);
+                        i.Set_occupied(false);
+                    }
+                    else{
+                        i.Set_necessary_work_time(i.necessary_work_time()-1);
+                        i.working_on_program(errors,time_counter); //start working with program
+                    }
+                }
+            }
         }
 
-        _hours_of_work--;
+        time_counter++;
     }
 }
