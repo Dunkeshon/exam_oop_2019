@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     _enter_amount_of_elements();
+
 }
 
 void MainWindow::Set_number_of_users(int number)
@@ -45,17 +46,24 @@ void MainWindow::_enter_amount_of_elements()
 
 void MainWindow::_generate_errors()
 {
-
+    vector<string> common_errors { "Overheating","Brain Lag","Bad input","ecxeption thrown",
+                           "No connection", "Empty screen", "pc explosion", "virus",
+                           "Lags", "slow responce" , " Wrong password","Wrong ID",
+                           "Wrong key", "Server problems"};
 }
 
 void MainWindow::_generate_users()
 {
-
+    vector<string> common_users {"Anatoliy", "Andrii","Artur", "Vlad","Dima","Danil",
+                                 "German","Isaac" "Max","Roman", "Pavel", "Thomas","Ted",
+                                 "Zack"};
 }
 
 void MainWindow::_generate_programs()
 {
-
+    vector<string>common_programs{"Google Chrome","Dropbox","Spotify","Paint","ShareX",
+                                  "Iobit cleaner", "Anti-virus","Win RAR","Telegram",
+                                  "Visual Studio", "Xcode","Cline","Source tree","Unity"};
 }
 
 
