@@ -54,7 +54,7 @@
      </layout>
     </item>
     <item row="0" column="1" rowspan="2">
-     <widget class="QWidget" name="widget" native="true">
+     <widget class="QWidget" name="group_list_widget" native="true">
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <layout class="QVBoxLayout" name="verticalLayout">

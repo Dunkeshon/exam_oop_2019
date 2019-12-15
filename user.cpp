@@ -37,6 +37,19 @@ user::user(std::vector<string> available_programs, string user_name)
    _name = user_name;
 }
 
+user::user()
+{
+
+}
+
+user::user(const user &obj)
+{
+    _name = obj._name;
+    _type = obj._type;
+    story =  obj.story;
+    program_and_average_time = obj.program_and_average_time;
+}
+
 user::debugStory::debugStory(string bug,int time_of_appearence,int time_of_fix)
 {
     _bug=bug;

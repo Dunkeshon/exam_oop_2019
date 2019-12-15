@@ -13,9 +13,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     // setEnable all except fill data
-    _enter_amount_of_elements();
-
-
+    ui->group_list_widget->setEnabled(false);
+    ui->start_demonstration->setEnabled(false);
+    connect(this,&MainWindow::data_arrived,[=](){
+        ui->group_list_widget->setEnabled(true);
+        ui->start_demonstration->setEnabled(true);
+        ui->setup_data->setEnabled(false);
+    });
 }
 
 void MainWindow::Set_number_of_users(int number)
@@ -57,7 +61,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::_enter_amount_of_elements()
 {
-    ui->centralwidget->setEnabled(false);
     input_data * dialog = new input_data(this);
     dialog->show();
 }
@@ -210,4 +213,87 @@ void MainWindow::problem_report()
     });
     window->setLayout(layout);
     window->show();
+}
+
+void MainWindow::on_setup_data_clicked()
+{
+    _enter_amount_of_elements();
+}
+
+void MainWindow::on_Show_details_button_clicked()
+{
+
+    string current_user_name = ui->listWidget->currentItem()->text().toStdString();
+
+    user current_user=_search_user_by_name(current_user_name);
+
+
+    QFont newFont("Courier", 24, QFont::Bold, false);
+    QDialog *details_option_window = new QDialog(this);
+
+    QHBoxLayout *hlayout = new QHBoxLayout;
+
+    QPushButton *programs_button = new QPushButton(this);
+    programs_button->setText("Programs");
+    programs_button->setFont(newFont);
+
+    QPushButton *errors_button = new QPushButton(this);
+    errors_button->setText("Errors");
+    errors_button->setFont(newFont);
+
+    hlayout->addWidget(programs_button,0);
+    hlayout->addWidget(errors_button,1);
+
+    //connect x2
+    // outputting list of errors
+    connect(programs_button,&QPushButton::clicked,[=](){
+
+        QLabel *details_label = new QLabel(details_option_window);
+        details_label->setText("Debug story");
+        details_label->setFont(newFont);
+        details_label->setFrameStyle(QFrame::Panel);
+        details_label->setAlignment(Qt::AlignHCenter);
+
+
+        QDialog *details_window = new QDialog(details_option_window);
+        QListWidget *list = new QListWidget;
+        list->setFont(newFont);
+
+        // outputing story of error
+        for(const auto &i:current_user.story){
+             list->addItem(QString::fromStdString(i._bug + "<br>" + "Spotted: " + std::to_string(i._time_of_appearence)+"th hour of work"
+                                                  + "<br>" +"Fixed: " +std::to_string(i._time_of_fix)+ "th hour of work"));
+        }
+
+        QPushButton *OKButton2 = new QPushButton(details_option_window);
+        OKButton2->setText("OK");
+        OKButton2->setFont(newFont);
+
+        QVBoxLayout *vlayout = new QVBoxLayout;
+
+        vlayout->addWidget(details_label,0);
+        vlayout->addWidget(list,1);
+        vlayout->addWidget(OKButton2,2);
+        details_window->setLayout(vlayout);
+
+        connect(OKButton2,&QPushButton::clicked,[=](){
+            details_window->hide();
+        });
+        details_window->show();
+
+    });
+
+    details_option_window->setLayout(hlayout);
+    details_option_window->show();
+}
+
+user MainWindow::_search_user_by_name(std::string name)
+{
+    user current_user;
+    for(const auto &i:users){
+        if(i.name()==name){
+            current_user = i;
+        }
+    }
+        return current_user;
 }

@@ -36,6 +36,8 @@ public:
      * brief cals set_program_and_average_time()
      */
     user(vector<string> available_programs, string user_name);
+    user();
+    user(const user &obj);
 };
 
 #endif // USER_H

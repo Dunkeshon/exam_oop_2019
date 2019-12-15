@@ -35,12 +35,17 @@ public:
 
     void generate_data();
     ~MainWindow();
-
+signals:
+    void data_arrived();
 private slots:
     void on_pushButton_clicked();
 
-private:
+    void on_setup_data_clicked();
 
+    void on_Show_details_button_clicked();
+
+private:
+    user _search_user_by_name(string name);
     void problem_report();
     void _enter_amount_of_elements();
     /*

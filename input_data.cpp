@@ -50,8 +50,7 @@ void input_data::on_confirm_button_clicked()
             temp->Set_number_of_programs(program);
             temp->Set_number_of_errors(error);
             temp->Set_hours_of_work(time);
-            temp->centralWidget()->setEnabled(true);
-
+            emit(temp->data_arrived());
             temp->generate_data();
             hide();
         }
