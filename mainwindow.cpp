@@ -223,7 +223,7 @@ void MainWindow::on_setup_data_clicked()
 void MainWindow::on_Show_details_button_clicked()
 {
 
-    string current_user_name = ui->listWidget->currentItem()->text().toStdString();
+    string current_user_name = ui->listWidget->currentItem()->text().toStdString(); // empty issue
 
     user current_user=_search_user_by_name(current_user_name);
 
@@ -279,8 +279,42 @@ void MainWindow::on_Show_details_button_clicked()
         connect(OKButton2,&QPushButton::clicked,[=](){
             details_window->hide();
         });
+        details_window->setLayout(vlayout);
         details_window->show();
 
+    });
+
+    connect(errors_button,&QPushButton::clicked,[=](){
+        QLabel *details_program_label = new QLabel(details_option_window);
+        details_program_label->setText("Program used");
+        details_program_label->setFont(newFont);
+        details_program_label->setFrameStyle(QFrame::Panel);
+        details_program_label->setAlignment(Qt::AlignHCenter);
+
+
+        QDialog *details_window = new QDialog(details_option_window);
+        QListWidget *list = new QListWidget;
+        list->setFont(newFont);
+
+        // outputing programs that used this worker
+        for(const auto &i:current_user.program_and_average_time){
+             list->addItem(QString::fromStdString(i.first));
+        }
+        QPushButton *OKButton = new QPushButton(details_option_window);
+        OKButton->setText("OK");
+        OKButton->setFont(newFont);
+        QVBoxLayout *vlayout = new QVBoxLayout;
+
+        vlayout->addWidget(details_program_label,0);
+        vlayout->addWidget(list,1);
+        vlayout->addWidget(OKButton,2);
+        details_window->setLayout(vlayout);
+
+        connect(OKButton,&QPushButton::clicked,[=](){
+            details_window->hide();
+        });
+        details_window->setLayout(vlayout);
+        details_window->show();
     });
 
     details_option_window->setLayout(hlayout);
