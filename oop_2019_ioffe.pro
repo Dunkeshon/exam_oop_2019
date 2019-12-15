@@ -17,16 +17,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     error.cpp \
+    input_data.cpp \
     main.cpp \
     mainwindow.cpp \
     user.cpp
 
 HEADERS += \
     error.h \
+    input_data.h \
     mainwindow.h \
     user.h
 
 FORMS += \
+    input_data.ui \
     mainwindow.ui
 
 # Default rules for deployment.
