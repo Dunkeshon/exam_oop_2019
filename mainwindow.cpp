@@ -34,9 +34,9 @@ void MainWindow::Set_hours_of_work(int number)
 
 void MainWindow::generate_data()
 {
+    _generate_programs();
     _generate_errors();
     _generate_users();
-    _generate_programs();
 }
 
 MainWindow::~MainWindow()
@@ -64,7 +64,6 @@ void MainWindow::_generate_errors()
     for(const auto &i:common_errors){
         errors.push_back(error(i,programs));
     }
-
 }
 
 void MainWindow::_generate_users()
@@ -76,7 +75,9 @@ void MainWindow::_generate_users()
     std::mt19937 gen(rd());
     std::shuffle(common_users.begin(),common_users.end(),gen); // shuffle
     common_users.erase(common_users.begin() + _number_of_users, common_users.end());// resize
-    users.push_back(common_users);
+    for(const auto &i:common_users){
+        users.push_back(user(programs,i));
+    }
 }
 
 void MainWindow::_generate_programs()
