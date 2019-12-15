@@ -26,6 +26,16 @@ void user::set_program_and_average_time(std::vector<string> available_programs)
     }
 }
 
+int user::necessary_work_time()
+{
+    return _necessary_work_time;
+}
+
+void user::Set_necessary_work_time(int time)
+{
+    _necessary_work_time = time;
+}
+
 std::string user::name() const
 {
     return _name;

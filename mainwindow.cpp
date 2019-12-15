@@ -283,7 +283,7 @@ void MainWindow::on_Show_details_button_clicked()
         details_window->show();
 
     });
-
+    // outputing list of programs that used this worker
     connect(errors_button,&QPushButton::clicked,[=](){
         QLabel *details_program_label = new QLabel(details_option_window);
         details_program_label->setText("Program used");

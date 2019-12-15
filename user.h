@@ -14,6 +14,7 @@ using std::pair;
 class user
 {
 private:
+     int _necessary_work_time; // necessary_work_time_with_current_program
      type_of_user _type;
      string _name;
      struct debugStory{
@@ -28,6 +29,8 @@ private:
       */
      void set_program_and_average_time(std::vector<string> available_programs);
 public:
+     int necessary_work_time();
+     void Set_necessary_work_time(int time);
     vector<pair<string,int>> program_and_average_time; // program- program that user uses
                                                         //int - average time of usage of this program
     vector <debugStory> story;
