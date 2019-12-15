@@ -246,7 +246,7 @@ void MainWindow::on_Show_details_button_clicked()
 
     //connect x2
     // outputting list of errors
-    connect(programs_button,&QPushButton::clicked,[=](){
+    connect(errors_button,&QPushButton::clicked,[=](){
 
         QLabel *details_label = new QLabel(details_option_window);
         details_label->setText("Debug story");
@@ -261,8 +261,8 @@ void MainWindow::on_Show_details_button_clicked()
 
         // outputing story of error
         for(const auto &i:current_user.story){
-             list->addItem(QString::fromStdString(i._bug + "<br>" + "Spotted: " + std::to_string(i._time_of_appearence)+"th hour of work"
-                                                  + "<br>" +"Fixed: " +std::to_string(i._time_of_fix)+ "th hour of work"));
+             list->addItem(QString::fromStdString(i._bug + " " + "Spotted: " + std::to_string(i._time_of_appearence)+"th hour of work"
+                                                  + " " +"Fixed: " +std::to_string(i._time_of_fix)+ "th hour of work"));
         }
 
         QPushButton *OKButton2 = new QPushButton(details_option_window);
@@ -284,7 +284,7 @@ void MainWindow::on_Show_details_button_clicked()
 
     });
     // outputing list of programs that used this worker
-    connect(errors_button,&QPushButton::clicked,[=](){
+    connect(programs_button,&QPushButton::clicked,[=](){
         QLabel *details_program_label = new QLabel(details_option_window);
         details_program_label->setText("Program used");
         details_program_label->setFont(newFont);
@@ -338,7 +338,7 @@ user MainWindow::_search_user_by_name(std::string name)
 void MainWindow::on_start_demonstration_clicked()
 {
     int time_counter=0;
-    while(time_counter!=_hours_of_work){
+    while(time_counter<_hours_of_work){
         //each worker
         for(auto &i:users){
             // if he is not occupied
@@ -365,5 +365,8 @@ void MainWindow::on_start_demonstration_clicked()
         }
 
         time_counter++;
+    }
+    for(const auto&i:users){
+        ui->listWidget->addItem(QString::fromStdString(i.name()));
     }
 }
