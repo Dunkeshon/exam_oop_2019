@@ -18,6 +18,7 @@ public:
 
 private slots:
 
+    void wrong_input();
     void on_confirm_button_clicked();
 
 private:

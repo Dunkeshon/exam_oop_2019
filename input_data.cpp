@@ -17,6 +17,15 @@ input_data::~input_data()
     delete ui;
 }
 
+void input_data::wrong_input()
+{
+    QMessageBox::StandardButton Btn = QMessageBox::warning(this,"wrong input","Wrong input.Try again",
+                                                           QMessageBox::Ok);
+     if (Btn == QMessageBox::Yes) {
+         on_confirm_button_clicked();
+     }
+}
+
 void input_data::on_confirm_button_clicked()
 {
     bool ok[4];
@@ -27,19 +36,25 @@ void input_data::on_confirm_button_clicked()
     int time=ui->hours_edit->text().toInt(&ok[3]);
     if(ok[0] &&ok[1]&&ok[2]&& ok[3])
     {
-        temp->Set_number_of_users(worker);
-        temp->Set_number_of_programs(program);
-        temp->Set_number_of_errors(error);
-        temp->Set_hours_of_work(time);
-        temp->centralWidget()->setEnabled(true);
-        hide();
+        if(worker>14||worker<5){
+            wrong_input();
+        }
+        else if(error>14||error<5){
+            wrong_input();
+        }
+        else if(program>14||program<5){
+            wrong_input();
+        }
+        else{
+            temp->Set_number_of_users(worker);
+            temp->Set_number_of_programs(program);
+            temp->Set_number_of_errors(error);
+            temp->Set_hours_of_work(time);
+            temp->centralWidget()->setEnabled(true);
+            hide();
+        }
     }
     else{
-
-       QMessageBox::StandardButton Btn = QMessageBox::warning(this,"wrong input","Wrong input.Try again",
-                                                              QMessageBox::Ok);
-        if (Btn == QMessageBox::Yes) {
-            on_confirm_button_clicked();
-        }
+      wrong_input();
     }
 }

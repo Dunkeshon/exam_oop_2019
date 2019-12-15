@@ -70,7 +70,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Number of workers (1-14):</string>
+          <string>Number of workers (5-14):</string>
          </property>
         </widget>
        </item>
@@ -82,7 +82,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Number of programs (1-14) :</string>
+          <string>Number of programs (5-14) :</string>
          </property>
         </widget>
        </item>
@@ -94,7 +94,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Number of errors  (1-14):</string>
+          <string>Number of errors  (5-14):</string>
          </property>
         </widget>
        </item>
