@@ -332,16 +332,17 @@ void MainWindow::on_start_demonstration_clicked()
                   i.working_on_program(errors,time_counter); //start working with program
             }
             else { // if occupied check if he need to fix a bug
-                if(i.bug_spotted){
+                if(i.bug_spotted)
+                {
                     i.current_bug_working_time_left--;
                     if(i.current_bug_working_time_left==0){ // if end up with a bug complete story about it
                         i.Set_time_of_fix(time_counter);
                         i.Set_occupied(false);
                     }
-                    else{
-                        i.Set_necessary_work_time(i.necessary_work_time()-1);
-                        i.working_on_program(errors,time_counter); //start working with program
-                    }
+                }
+                else{
+                    i.Set_necessary_work_time(i.necessary_work_time()-1);
+                    i.working_on_program(errors,time_counter); //start working with program
                 }
             }
         }
