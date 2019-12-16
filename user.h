@@ -53,6 +53,8 @@ public:
       * randomize and sets value inside the function
       */
      void pick_up_random_program();
+
+     vector<error> shuffle_bugs(vector<error> available_errors);
      pair<string,int> current_program() const;
      void Set_current_program(pair <string,int> program);
      bool occupied() const;

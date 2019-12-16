@@ -78,6 +78,8 @@ bool user::randomise_appearence_of_a_bug(int chance)
 
 void user::working_on_program(vector<error> available_errors,int hours_passed)
 {
+    // перемешать ерроры
+    available_errors=shuffle_bugs(available_errors);
     int temp_chance;
     // for each error
     for(const auto &i:available_errors){
@@ -112,6 +114,14 @@ void user::pick_up_random_program()
     std::uniform_int_distribution<> dist(0,program_and_average_time.size()-1);
     int choise = dist(gen);
     _current_program = program_and_average_time[choise];
+}
+
+vector<error> user::shuffle_bugs(vector<error> available_errors)
+{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::shuffle(available_errors.begin(),available_errors.end(),gen); // shuffle
+    return available_errors;
 }
 
 pair<std::string, int> user::current_program() const
