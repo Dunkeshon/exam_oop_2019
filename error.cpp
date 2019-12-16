@@ -4,7 +4,7 @@ int error::generate_average_fixing_time()
 {
     std::random_device rd;   // non-deterministic generator
     std::mt19937 gen(rd());  // to seed mersenne twister.
-    std::uniform_int_distribution<> dist(1,4);
+    std::uniform_int_distribution<> dist(1,10);
     return dist(gen); // generate time
 }
 
@@ -12,7 +12,7 @@ int error::generate_appearence_chance()
 {
     std::random_device rd;   // non-deterministic generator
     std::mt19937 gen(rd());  // to seed mersenne twister.
-    std::uniform_int_distribution<> dist(0,10);
+    std::uniform_int_distribution<> dist(0,100);
     return dist(gen);
 }
 
